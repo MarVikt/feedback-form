@@ -7,6 +7,14 @@
 @media (max-width: 1280px)
 // --------------------------------------------------
 @media (max-width: 1060px)
+  .feedback__form 
+    & textarea
+      margin-bottom: 0
+    & .form-btn
+      order: 1
+      flex-basis: 100%
+    & .form-required
+      margin-bottom: 1rem
 // --------------------------------------------------
 @media (hover: hover) and (min-width: 992px)
   a
@@ -18,11 +26,21 @@
       cursor: pointer
 // --------------------------------------------------
 @media (max-width: 860px)
+  html
+    font-size: 14px
 // --------------------------------------------------
 @media (max-width: 767px)
+  html
+    font-size: 10px
 // --------------------------------------------------
 @media (max-width: 640px)
+  .form
+    &-email
+      flex-basis: 100%
+    &-phone
+      flex-basis: 100%
 // --------------------------------------------------
 @media (max-width: 549px)
   .feedback
-    width: 90.625%
+    width: 80%
+    left: 10%
