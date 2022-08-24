@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Форма обратной связи</title>
+  <link rel="stylesheet" href="./css/style.min.css">
+  <script src="js/main.js" defer></script>
+</head>
+
+<body>
+
+  <div class="main">
+    <div class="main__content boundaries">
+      <h1 class="main__title">Остались вопросы?</h1>
+      <div class="underline"></div>
+      <h2 class="main__subtitle">Задайте их в форме ниже и наши специалисты свяжуться с Вами!</h2>
+      <form id="form1" name="content-form" class="main__form">
+        <div>
+          <input class="top-form" id="form1-name" type="text" name="user_name" placeholder="Ваше имя" required>
+        </div>
+        <div>
+          <input class="top-form form-email" id="form1-email" type="email" name="user_email" placeholder="E-mail">
+        </div>
+        <div>
+          <input class="top-form form-phone" id="form1-phone" type="tel" name="user_phone" placeholder="Номер телефона"
+            required>
+        </div>
+        <div>
+          <input class="mess" id="form1-message" name="user_message" placeholder="Ваше сообщение">
+        </div>
+        <div>
+          <button class="btn form-btn" type="submit">Оставить заявку</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <!-- main -->
+
+</body>
+
+</html>
