@@ -13,29 +13,27 @@
 <body>
 
   <div class="feedback">
-    <div class="feedback__content boundaries">
-      <h3 class="feedback__title">Остались вопросы?</h1>
-      <div class="feedback__underline"></div>
-      <div class="feedback__description">Задайте их в форме ниже и наши специалисты свяжуться с Вами!</div>
+    <h3 class="feedback__title">Остались вопросы?</h1>
+      <div class="feedback__description">Задайте их в форме ниже и наши специалисты свяжутся с Вами!</div>
       <form id="form1" name="content-form" class="feedback__form">
-        <div>
-          <input class="top-form" id="form1-name" type="text" name="user_name" placeholder="Ваше имя" required>
+        <div class="item-form form-name">
+          <input id="form1-name" type="text" name="user_name" placeholder="Ваше имя*" required>
         </div>
-        <div>
-          <input class="top-form form-email" id="form1-email" type="email" name="user_email" placeholder="E-mail">
+        <div class="item-form form-email">
+          <input id="form1-email" type="email" name="user_email" placeholder="E-mail*">
         </div>
-        <div>
-          <input class="top-form form-phone" id="form1-phone" type="tel" name="user_phone" placeholder="Номер телефона"
+        <div class="item-form form-phone">
+          <input id="form1-phone" type="tel" name="user_phone" placeholder="Номер телефона*"
             required>
         </div>
-        <div>
-          <input class="mess" id="form1-message" name="user_message" placeholder="Ваше сообщение">
+        <div class="item-form form-mess">
+          <textarea id="form1-message" name="user_message" cols="30" rows="5" placeholder="Ваше сообщение"></textarea>
         </div>
         <div>
           <button class="btn form-btn" type="submit">Оставить заявку</button>
         </div>
+        <span class="form-required">* Поля обязательны к заполнению</span>
       </form>
-    </div>
   </div>
   <!-- feedback -->
 
