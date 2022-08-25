@@ -1,5 +1,3 @@
-import oneModule from "./modules/one";
-import twoModule from "./modules/two";
+import modal from "./modules/modal";
 
-oneModule();
-twoModule();
+modal('form1');
