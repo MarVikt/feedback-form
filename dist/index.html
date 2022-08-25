@@ -19,10 +19,13 @@
     <button>Оформить заявку</button>
   </div>
 
-  <div class="feedback">
+  <div  id="form1" class="feedback">
+		<div class="modal-close">
+			<img src="images/close_icon.svg" alt="modal-close">
+		</div>
     <h3 class="feedback__title">Остались вопросы?</h3>
       <div class="feedback__description">Задайте их в форме ниже и наши специалисты свяжутся с&nbsp;Вами!</div>
-      <form id="form1" name="content-form" class="feedback__form">
+      <form name="content-form" class="feedback__form">
         <div class="item-form form-name">
           <input id="form1-name" type="text" name="user_name" placeholder="Ваше имя*" required>
         </div>
@@ -43,6 +46,9 @@
       </form>
   </div>
   <!-- feedback -->
+  
+  <div class="modal-overlay"></div>
+
 
 </body>
 

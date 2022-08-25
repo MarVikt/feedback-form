@@ -3,10 +3,11 @@ import { sendForm } from "./sendForm";
 
 const modal = (idModal) => {
   const modalForm = document.getElementById(idModal);
+  const modalOverlay = document.querySelector('.modal-overlay');
 
   const showModal = () => {
     modalForm.style.display = "block";
-    // modalOverlay.style.display = "block";
+    modalOverlay.style.display = "block";
     document.body.style.overflow = "hidden";
     animate({
       duration: 500,
@@ -24,7 +25,7 @@ const modal = (idModal) => {
       setTimeout(() => {
         if (modalForm.style.display === "block") {
           modalForm.style.display = "none";
-          // modalOverlay.style.display = "none";
+          modalOverlay.style.display = "none";
           document.body.style.overflow = "auto";
           document.body.removeEventListener('click', modalProcessing);
         }
@@ -34,7 +35,9 @@ const modal = (idModal) => {
 
   const modalProcessing = (e) => {
     e.preventDefault();
-    if (e.target.matches('button[type="submit"]')) {
+    if (e.target.closest('.modal-overlay') || e.target.closest('.modal-close')) {
+      closeModal(0);
+    } else if (e.target.matches('button[type="submit"]')) {
       const formInputs = modalForm.querySelectorAll("input,textarea");
       const formData = {};
       formInputs.forEach((elem) => {
@@ -49,13 +52,16 @@ const modal = (idModal) => {
       sendForm(idModal, formData);
 
       // очистим поля формы
-      formInputs.forEach((elem) => {
-          elem.value = "";
+      formInputs.forEach(elem => {
+        if (elem.getAttribute('name') !== null) {
+        elem.value = '';
+        }
       });
-    }
+      closeModal(5000);
+  }
   };
 
   showModal();
-  modalForm.addEventListener("click", modalProcessing);
+  document.body.addEventListener("click", modalProcessing);
 };
 export default modal;
