@@ -44,7 +44,7 @@ const sendForm = (formId, formBody) => {
     sendData(formBody)
       .then(data => {
         statusBlock.textContent = 'Спасибо! Наш менеджер свяжется с Вами!';
-        console.log(data);
+        console.log(data.id);
         deleteBlock(statusBlock,3000);
       })
       .catch(error => {

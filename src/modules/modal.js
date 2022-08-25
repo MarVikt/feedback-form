@@ -1,7 +1,36 @@
+import{animate} from './helpers';
 import { sendForm } from "./sendForm";
 
 const modal = (idModal) => {
   const modalForm = document.getElementById(idModal);
+
+  const showModal = () => {
+    modalForm.style.display = "block";
+    // modalOverlay.style.display = "block";
+    document.body.style.overflow = "hidden";
+    animate({
+      duration: 500,
+      timing(timeFraction) {
+        return Math.pow(timeFraction, 2);
+      },
+      draw(progress) {
+        modalForm.style.opacity = progress;
+      }
+    });
+  };
+
+  const closeModal = (msec) => {
+    return new Promise((resolve,reject) => {
+      setTimeout(() => {
+        if (modalForm.style.display === "block") {
+          modalForm.style.display = "none";
+          // modalOverlay.style.display = "none";
+          document.body.style.overflow = "auto";
+          document.body.removeEventListener('click', modalProcessing);
+        }
+      }, msec);
+    });
+  };
 
   const modalProcessing = (e) => {
     e.preventDefault();
@@ -26,6 +55,7 @@ const modal = (idModal) => {
     }
   };
 
+  showModal();
   modalForm.addEventListener("click", modalProcessing);
 };
 export default modal;
