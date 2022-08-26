@@ -1,5 +1,5 @@
 import{animate} from './helpers';
-import { sendForm } from "./sendForm";
+import { SendingForm } from "./sendForm";
 
 const modal = (idModal) => {
   const modalForm = document.getElementById(idModal);
@@ -49,7 +49,9 @@ const modal = (idModal) => {
       formData.idForm = idModal;
 
       //отправим форму (без валидации полей)
-      sendForm(idModal, formData);
+      let newLetter = new SendingForm(idModal, formData);
+      newLetter.sendForm();
+      // sendForm(idModal, formData);
 
       // очистим поля формы
       formInputs.forEach(elem => {

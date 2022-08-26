@@ -1,4 +1,86 @@
-const sendForm = (formId, formBody) => {
+class SendingForm {
+  constructor (formId,formBody) {
+    this.formId = formId;
+    this.formBody = formBody;
+  }
+  
+  sendForm() {
+    const dataBaseUrl = 'https://jsonplaceholder.typicode.com/posts';
+    const form = document.getElementById(this.formId);
+    const itWasSent = document.querySelector('.it-was-sent');
+  
+    const sendData = (data) => {
+      return fetch(dataBaseUrl, {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: {
+          'Content-type': 'application/json; charset=UTF-8',
+        }
+      }).then(response => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${ response.status }`);
+        }
+        return response.json();
+      });
+    };
+  
+    const deleteBlock = (block,msec) => {
+      return new Promise((resolve,reject) => {
+        setTimeout(() => {
+          if (block) {
+            block.remove();
+          }
+        }, msec);
+      });
+    };
+  
+    try {
+      if (!form) {
+        throw new Error (`Форма ${this.formId} отсутствует на странице`);
+      }
+  
+      let statusBlock = document.getElementById(`status-${this.formId}`);
+      if (!statusBlock) {
+        statusBlock = document.createElement('span');
+        statusBlock.id = `status-${this.formId}`;
+        statusBlock.style.flexBasis = '100%';
+        statusBlock.style.paddingTop = '1rem';
+        form.append(statusBlock);
+      }
+      statusBlock.textContent = 'Отправка...';
+      itWasSent.style.display = 'none';
+  
+      sendData(this.formBody)
+        .then(data => {
+          statusBlock.textContent = 'Спасибо! Наш менеджер свяжется с Вами!';
+          deleteBlock(statusBlock,3000);
+  
+          // отобразим отправленные сведения где-то справа
+          itWasSent.style.display = 'block';
+          itWasSent.innerHTML = '';
+          itWasSent.insertAdjacentHTML('beforeend',`
+          <p>Заявка отправлена!</p>
+          `);
+          for (let key in data) {
+            itWasSent.insertAdjacentHTML('beforeend',`
+            <div><b>${key}:</b> ${data[key]}</div>
+            `);
+          }
+        })
+        .catch(error => {
+          console.log(error.message);
+          statusBlock.textContent = 'Ошибка отправки';
+        });
+    } catch (error) {
+      console.log(error.message);
+    } 
+  }
+  
+}
+
+export {SendingForm}; 
+
+/* const sendForm = (formId, formBody) => {
   const dataBaseUrl = 'https://jsonplaceholder.typicode.com/posts';
   const form = document.getElementById(formId);
   const itWasSent = document.querySelector('.it-was-sent');
@@ -70,4 +152,4 @@ const sendForm = (formId, formBody) => {
   } 
 };
 
-export {sendForm};
+export {sendForm}; */
