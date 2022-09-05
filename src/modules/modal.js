@@ -1,4 +1,3 @@
-import{animate} from './helpers';
 import { SendingForm } from "./sendForm";
 
 const modal = (idModal) => {
@@ -6,25 +5,19 @@ const modal = (idModal) => {
   const modalOverlay = document.querySelector('.modal-overlay');
 
   const showModal = () => {
-    modalForm.style.display = "block";
     modalOverlay.style.display = "block";
     document.body.style.overflow = "hidden";
-    animate({
-      duration: 500,
-      timing(timeFraction) {
-        return Math.pow(timeFraction, 2);
-      },
-      draw(progress) {
-        modalForm.style.opacity = progress;
-      }
-    });
+    modalForm.style.opacity = "1";
+    modalForm.style.visibility = "visible";
+    modalForm.style.transitionDelay = "0s";
   };
 
   const closeModal = (msec) => {
     return new Promise((resolve,reject) => {
       setTimeout(() => {
-        if (modalForm.style.display === "block") {
-          modalForm.style.display = "none";
+        if (modalForm.style.visibility === "visible") {
+          modalForm.style.opacity = "0";
+          modalForm.style.visibility = "hidden";
           modalOverlay.style.display = "none";
           document.body.style.overflow = "auto";
           document.body.removeEventListener('click', modalProcessing);
